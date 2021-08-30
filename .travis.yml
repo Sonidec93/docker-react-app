@@ -5,3 +5,15 @@ before_install:
   - docker build -t mukulkumra/demo-react-app -f Dockerfile.dev .
 script:
   - docker run -e CI=true mukulkumra/demo-react-app npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "docker-react"
+  environment: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-266349384425"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  secret_access_key:
+    secure: $SECRET_ACCESS_KEY
+  access_key_id: $ACCESS_KEY_ID
