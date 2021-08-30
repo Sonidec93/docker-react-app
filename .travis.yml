@@ -4,7 +4,7 @@ services:
 before_install:
   - docker build -t mukulkumra/demo-react-app .
 script:
-  - docker build -t mukulkumra/demo-test-app -f Dockerfile.dev
+  - docker build -t mukulkumra/demo-test-app -f Dockerfile.dev .
   - docker run -e CI=true mukulkumra/demo-test-app npm run test -- --coverage
 deploy:
   provider: elasticbeanstalk
